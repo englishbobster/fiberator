@@ -1,0 +1,2 @@
+defmodule Fiberator do
+end
