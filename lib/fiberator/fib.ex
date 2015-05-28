@@ -6,8 +6,8 @@ defmodule Fiberator.Fib do
 		fib_pure(n-1) + fib_pure(n-2)
 	end
 
-	def fib_cache_start() do
-		Agent.start_link(fn -> %{} end)
+	def fib_cache_start(map) do
+		Agent.start_link(fn -> map end)
 	end
 
 	def fib_cache(n, agent) do
