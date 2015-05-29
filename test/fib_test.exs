@@ -19,21 +19,21 @@ defmodule FibTest do
   end
 
   test "can start and stop a fib agent" do
-    {:ok, pid} = fib_cache_start()
+    {:ok, pid} = fib_cache_start(%{})
     assert Process.alive?(pid)
     fib_cache_stop(pid)
     assert not Process.alive?(pid)
   end
 
   test "fib agent map is empty for first use" do
-    {:ok, pid} = fib_cache_start()
+    {:ok, pid} = fib_cache_start(%{})
     assert Map.size(get_fib_cache(pid)) == 0
     fib_cache_stop(pid)
     assert not Process.alive?(pid)
   end
 
   test "can cache a fib value in the agent and retrieve it correctly" do
-    {:ok, pid} = fib_cache_start()
+    {:ok, pid} = fib_cache_start(%{})
     value = fib_cache(3, pid)
     cache = get_fib_cache(pid)
     assert Map.size(cache) == 1
@@ -43,6 +43,5 @@ defmodule FibTest do
     fib_cache_stop(pid)
     assert not Process.alive?(pid)
   end
-
 
 end
