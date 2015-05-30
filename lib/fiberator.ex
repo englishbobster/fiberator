@@ -4,12 +4,10 @@ defmodule Fiberator do
 
   def main(argv) do
     {:ok, cache_pid} = prepare_cache()
-    input = request_input()
-    result = fib_cache(input, cache_pid)
+    result = request_input() |> fib_cache(cache_pid)
     IO.write("The fiborator says: #{result}\n")
-    write_fib_cache_to_file(get_fib_cache(cache_pid))
+    get_fib_cache(cache_pid) |> write_fib_cache_to_file()
     fib_cache_stop(cache_pid)
-
   end
 
   defp request_input() do
