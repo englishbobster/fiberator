@@ -32,6 +32,9 @@ defmodule Fiberator.FibFileCache do
 	Writes the entire fib cache to the file fibcache.txt.
 	"""
 	def write_fib_cache_to_file(cache) do
+		if File.exists?("fibcache.txt") do
+			File.rm!("fibcache.txt")
+		end
 			Enum.map(cache, fn {k,v} -> add_fib_entry_to_file(k, v) end)
 	end
 

@@ -7,6 +7,9 @@ defmodule Fiberator do
     input = request_input()
     result = fib_cache(input, cache_pid)
     IO.write("The fiborator says: #{result}\n")
+    write_fib_cache_to_file(get_fib_cache(cache_pid))
+    fib_cache_stop(cache_pid)
+
   end
 
   defp request_input() do
