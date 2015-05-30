@@ -14,10 +14,10 @@ defmodule Fiberator do
   end
 
   defp prepare_cache() do
-    read_fib_file() |> fib_cache_start
+    read_fib_cache_from_file() |> fib_cache_start
   end
 
   defp process_input(data) do
-    String.strip(data) |> String.to_integer 
+    String.strip(data) |> String.to_integer
   end
 end

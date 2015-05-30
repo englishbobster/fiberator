@@ -5,7 +5,7 @@ defmodule FibFileCacheTest do
   test "fibcache.txt is created when read for first time" do
     tidy()
     assert not File.exists?("fibcache.txt")
-    read_fib_file()
+    read_fib_cache_from_file()
     assert File.exists?("fibcache.txt")
     tidy()
   end
@@ -22,7 +22,7 @@ defmodule FibFileCacheTest do
     tidy()
     assert not File.exists?("fibcache.txt")
     add_fib_entry_to_file(1, 100)
-    assert read_fib_file() == %{1 =>100}
+    assert read_fib_cache_from_file() == %{1 =>100}
     tidy()
   end
 

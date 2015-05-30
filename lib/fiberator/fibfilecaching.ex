@@ -5,25 +5,34 @@ defmodule Fiberator.FibFileCache do
 	fibonacci calculations. Returns a map of the calculations.
 	If the file doesnt exist, the file is created and an empty map is returned.
 	"""
-	def read_fib_file() do
-		case File.open("fibcache.txt", [:read, :write]) do
-			{:ok, file_pid} ->
-				read(file_pid)
+	def read_fib_cache_from_file() do
+		case File.open("fibcache.txt", [:read, :write], fn file_pid ->
+																										read(file_pid) end) do
+			{:ok, result} ->
+				result
 			{:error, reason} ->
-				IO.puts("Failed to open file for reading: #{reason}")
+				IO.puts("Failed to read file because: #{reason}")
 		end
 	end
 
 	@doc """
-	Appends the results of fibonacci calculations (n, value) to fibcache.txt.
+	Appends the result of one fibonacci calculation (n, value) to fibcache.txt.
 	"""
 	def add_fib_entry_to_file(n, value) do
-		case File.open("fibcache.txt", [:append]) do
-			{:ok, file_pid} ->
-				IO.write(file_pid, "#{n} #{value}\n")
+		case File.open("fibcache.txt", [:append], fn file_pid ->
+			 																write_entry(file_pid, n, value) end) do
+			{:ok, result} ->
+				:ok
 			{:error, reason} ->
-				IO.puts("Failed to open file for writing: #{reason}")
+				IO.puts("Failed to write to file because: #{reason}")
 		end
+	end
+
+	def write_fib_cache_to_file(cache) do
+	end
+
+	defp write_entry(file_pid, n, value) do
+		IO.write(file_pid, "#{n} #{value}\n")
 	end
 
 	defp read(file_pid) do
