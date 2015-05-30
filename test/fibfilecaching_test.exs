@@ -26,6 +26,15 @@ defmodule FibFileCacheTest do
     tidy()
   end
 
+  test "should write entire cache map to file" do
+    tidy()
+    test_map = %{1 => 100, 2 => 300}
+    assert not File.exists?("fibcache.txt")
+    write_fib_cache_to_file(test_map)
+    assert read_fib_cache_from_file() == test_map
+    tidy()
+  end
+
   defp tidy() do
     #tidy up after test
     if (File.exists?("fibcache.txt")) do
