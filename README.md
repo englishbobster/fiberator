@@ -11,3 +11,12 @@ To compile use mix:
 To run:
 
 `./fiberator`
+
+
+## To Do/Problems:
+
+* Way to much passing around that cache_pid variable :-(
+* Not very functional in flow.
+* Some simpler chain than used in the current file parsing function?
+* Tests for the fiberator main.
+* ...
