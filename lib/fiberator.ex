@@ -27,7 +27,16 @@ defmodule Fiberator do
     Process.exit(self, "quiterated!")
   end
   defp process_input(data, _) do
-    String.strip(data) |> String.to_integer
+    if is_numeric(data) do
+      String.strip(data) |> String.to_integer
+    else
+      IO.write("Unrecognized input, possibly not an integer.")
+      0
+    end
+  end
+
+  defp is_numeric(data) do
+    String.match?(data, ~r{^[0-9]+$})
   end
 
   defp handle_shutdown(cache_pid) do
