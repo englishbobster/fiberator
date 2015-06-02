@@ -19,4 +19,4 @@ To run:
 * Not very functional in flow.
 * Some simpler chain than used in the current file parsing function?
 * Tests for the fiberator main.
-* ...
+* Order of pattern matching: should this be important?
