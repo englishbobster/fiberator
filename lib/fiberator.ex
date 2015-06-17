@@ -26,6 +26,7 @@ defmodule Fiberator do
     handle_shutdown(cache_pid)
     Process.exit(self, "quiterated!")
   end
+  
   defp process_input(data, _) do
     if is_numeric(data) do
       String.strip(data) |> String.to_integer
